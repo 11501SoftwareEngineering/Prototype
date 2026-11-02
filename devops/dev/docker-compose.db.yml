@@ -1,0 +1,64 @@
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: squicrates-postgres-dev
+    restart: always
+    env_file:
+      - ../../backend/.env
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network-dev
+    ports:
+      - 127.0.0.1:5432:5432
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+    # 唯讀根檔案系統 (掛載必要暫存區)，資料在記憶體，容器關掉就沒了
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+
+  redis:
+    image: redis:8-alpine
+    container_name: squicrates-redis-dev
+    restart: always
+    volumes:
+      - redis_data_dev:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db-network-dev
+    ports:
+      - 127.0.0.1:6379:6379
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+
+volumes:
+  postgres_data_dev:
+  redis_data_dev:
+
+
+networks:
+  db-network-dev:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"

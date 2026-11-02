@@ -1,0 +1,61 @@
+[project]
+name = "backend"
+version = "0.0.0"
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.20.0",
+    "asyncpg>=0.31.0",
+    "fastapi[standard]>=0.141.1",
+    "pwdlib[argon2]>=0.3.1",
+    "pydantic-settings>=2.15.0",
+    "pyjwt>=2.15.0",
+    "pyyaml>=6.0.3",
+    "redis>=8.1.0",
+    "sqlalchemy[asyncio]>=2",
+    "swagger-ui-bundle-v2>=5.31.0",
+    "tzdata>=2026.4",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "httpx2>=2.13.1",
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.9",
+    "types-pyyaml>=6.0.12.20260906",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 88
+exclude = ["alembic/versions"]
+
+[tool.ruff.lint]
+# Enable the recommended style, correctness, and simplification rules.
+select = [
+    "E", "W",  # pycodestyle
+    "F",        # Pyflakes
+    "B",        # flake8-bugbear
+    "I",        # isort
+    "UP",       # pyupgrade
+    "A",        # flake8-builtins
+    "C4",       # flake8-comprehensions
+    "SIM",      # flake8-simplify
+    "RUF",      # Ruff-specific rules
+]
+ignore = [
+    "E501",  # Ruff formatter handles line wrapping.
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["integration: requires disposable PostgreSQL and Redis services"]
+filterwarnings = [
+    'ignore:The anyio\.abc\.BlockingPortal alias is deprecated, use anyio\.from_thread\.BlockingPortal instead\.:DeprecationWarning',
+]

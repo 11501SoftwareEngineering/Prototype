@@ -1,0 +1,25 @@
+# Local environment and generated deployment files
+.env
+.env.local
+.env.*.local
+.env.db
+!.env.example
+*.log
+*.tmp
+*.zip
+*.tar
+*.gz
+*.o
+*.a
+*.dll
+*.so
+
+# Secret files; keep named examples under version control
+*password*
+!*password*example*
+
+# Local editor settings
+.vscode/
+.idea/
+*.swp
+*.swo

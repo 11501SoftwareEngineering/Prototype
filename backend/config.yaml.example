@@ -1,0 +1,4 @@
+# Copy to config.yaml (gitignored). Schema: app.core.yaml_config.YamlConfig
+#
+# SUPER_ADMIN_ACCOUNTS — list of account_id (admin elevation; DB role unchanged)
+SUPER_ADMIN_ACCOUNTS: [alice, bob]
