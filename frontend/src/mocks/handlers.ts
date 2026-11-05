@@ -2,7 +2,7 @@
  * 假後端：用 MSW 在瀏覽器攔截 /api/v1/... 的請求，回傳假資料。
  * 前端程式完全不用改，後端做好後把 VITE_USE_MOCK 關掉就會打真的 API。
  *
- * 路徑和回傳格式照 docs/API功能規格.md；後端已經做好的部分照 backend/app/schemas。
+ * 後端已經做好的部分，路徑與回傳格式對照實際路由及 backend/app/schemas。
  * 錯誤訊息用後端的英文原文，畫面上會由 lib/utils.ts 翻成中文。
  */
 import { delay, http, HttpResponse } from 'msw'

@@ -2,7 +2,7 @@ import { apiClient } from './client'
 
 /**
  * 學生端：課程、題目、對話、結果。
- * 依 docs/API功能規格.md「學生端」。建立 Session、匿名設定已對照後端 schema，
+ * 建立 Session、匿名設定已對照後端 schema，
  * 其他欄位是照規格推測的。標 ⚠️ 的是規格裡沒有、前端先假設的。
  */
 

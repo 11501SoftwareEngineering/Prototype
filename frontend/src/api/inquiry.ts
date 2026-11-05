@@ -1,7 +1,7 @@
 import { apiClient } from './client'
 
 // Three-stage contract. These endpoints are implemented by MSW in demo mode;
-// production backend integration is tracked in docs/前端三階段串接.md.
+// production backend integration must match the actual backend routes and schemas.
 export type AgeBand = '13-15' | '16-18' | 'university_plus'
 export type ContentLanguage = 'zh-TW' | 'en' | 'es'
 export type PublicationStatus = 'draft' | 'published'
