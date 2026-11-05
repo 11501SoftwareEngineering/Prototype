@@ -14,6 +14,8 @@ import {
 import { useLocale, type Locale } from '@/composables/useLocale'
 import { homeRouteFor, useAuthStore } from '@/stores/auth'
 
+defineEmits<{ changePassword: [] }>()
+
 const route = useRoute()
 const authStore = useAuthStore(),
   { locale, t, setLocale } = useLocale()
@@ -109,6 +111,10 @@ const homeLink = computed<RouteLocationRaw>(() =>
               ><RouterLink :to="{ name: 'TeacherAiSettings' }"
                 >AI 用量與金鑰</RouterLink
               ></DropdownMenuItem
+            ><DropdownMenuItem
+              class="cursor-pointer px-3 py-2 text-sm focus:bg-muted"
+              @select="$emit('changePassword')"
+              >{{ t('修改密碼') }}</DropdownMenuItem
             ><DropdownMenuItem
               class="cursor-pointer px-3 py-2 text-sm focus:bg-muted"
               @select="authStore.logout()"

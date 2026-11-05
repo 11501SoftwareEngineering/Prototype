@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent, onMounted } from 'vue'
+import { computed, defineAsyncComponent, onMounted, ref, watch } from 'vue'
 import { RouterView } from 'vue-router'
 import AppFooter from '@/components/common/AppFooter.vue'
 import AppHeader from '@/components/common/AppHeader.vue'
@@ -14,11 +14,20 @@ const DebugPanel =
 
 const authStore = useAuthStore()
 
-// 老師第一次登入要先改密碼：強制打開、不能關
+const passwordRequested = ref(false)
+// 首次登入強制設定；頭像選單另可主動開啟同一份表單。
 const passwordOpen = computed({
-  get: () => authStore.mustChangePassword,
-  set: () => undefined,
+  get: () => authStore.isAuthenticated && (authStore.mustChangePassword || passwordRequested.value),
+  set: (value: boolean) => {
+    if (!authStore.mustChangePassword) passwordRequested.value = value
+  },
 })
+watch(
+  () => authStore.user?.account,
+  () => {
+    passwordRequested.value = false
+  },
+)
 
 // 重新整理後，用保存的 token 跟後端確認身分（GET /users/me）
 onMounted(() => {
@@ -33,13 +42,13 @@ onMounted(() => {
       class="sr-only z-50 rounded-lg bg-card px-4 py-2 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
       >跳到主要內容</a
     >
-    <AppHeader />
+    <AppHeader @change-password="passwordRequested = true" />
     <main id="main" class="flex flex-1 flex-col">
       <RouterView />
     </main>
     <AppFooter />
     <ChangePasswordDialog
-      v-if="authStore.isAuthenticated && authStore.mustChangePassword"
+      v-if="authStore.isAuthenticated && passwordOpen"
       v-model:open="passwordOpen"
     />
     <component :is="DebugPanel" v-if="DebugPanel" />

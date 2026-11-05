@@ -12,6 +12,27 @@ function initialLocale(): Locale {
 }
 const locale = ref<Locale>(initialLocale())
 const messages: Record<string, [string, string]> = {
+  修改密碼: ['Change password', 'Cambiar contraseña'],
+  設定首次登入密碼: ['Set your first password', 'Configura tu contraseña inicial'],
+  '這是第一次登入，請先把管理員給你的初始密碼改成自己的密碼。': [
+    'Before continuing, replace the initial password provided by your administrator.',
+    'Antes de continuar, cambia la contraseña inicial proporcionada por tu administrador.',
+  ],
+  '請輸入原密碼，並設定新的密碼。': [
+    'Enter your current password and choose a new password.',
+    'Introduce tu contraseña actual y elige una nueva.',
+  ],
+  設定密碼: ['Set password', 'Establecer contraseña'],
+  取消: ['Cancel', 'Cancelar'],
+  原密碼: ['Current password', 'Contraseña actual'],
+  新密碼: ['New password', 'Nueva contraseña'],
+  確認新密碼: ['Confirm new password', 'Confirmar nueva contraseña'],
+  '8 至 128 個字元': ['8 to 128 characters', 'De 8 a 128 caracteres'],
+  請輸入原密碼: ['Enter your current password', 'Introduce tu contraseña actual'],
+  '新密碼至少要 8 個字元': ['Use at least 8 characters', 'Usa al menos 8 caracteres'],
+  '新密碼最多 128 個字元': ['Use no more than 128 characters', 'Usa como máximo 128 caracteres'],
+  新密碼不能與原密碼相同: ['Choose a different password', 'Elige una contraseña diferente'],
+  兩次輸入的新密碼不一樣: ['The new passwords do not match', 'Las nuevas contraseñas no coinciden'],
   多種觀點變化: ['Different viewpoint changes', 'Distintos cambios de perspectiva'],
   觀點變化時間軸: ['Viewpoint timeline', 'Evolución de la perspectiva'],
   提問前的觀點總結: ['Summary before the question', 'Síntesis antes de la pregunta'],

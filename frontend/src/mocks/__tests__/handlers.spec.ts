@@ -594,7 +594,7 @@ describe('新版三階段流程', () => {
     ).toHaveLength(12)
   })
 
-  it('只允許初次登入改密碼，完成後不提供後續修改', async () => {
+  it('首次登入設定完成後仍可用舊密碼修改新密碼', async () => {
     const teacher = await login('chen')
     expect(
       (
@@ -616,6 +616,8 @@ describe('新版三階段流程', () => {
           }),
         })
       ).res.status,
-    ).toBe(403)
+    ).toBe(200)
+    expect((await login('chen', 'firstpassword456')).res.status).toBe(401)
+    expect((await login('chen', 'laterpassword789')).res.status).toBe(200)
   })
 })

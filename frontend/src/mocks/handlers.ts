@@ -316,10 +316,10 @@ export const handlers = [
   route('auth', 'put', '/auth/password', async ({ request }) => {
     const user = authorize(request)
     if (user instanceof Response) return user
-    if (!user.must_change_password) return fail(403, '僅初次登入可設定密碼。')
     const data = await body<{ old_password: string; new_password: string }>(request)
     if (data.old_password !== user.password) return fail(400, 'Current password is incorrect')
     if ((data.new_password ?? '').length < 8) return validationError('new_password', 'Too short')
+    if ((data.new_password ?? '').length > 128) return validationError('new_password', 'Too long')
     if (data.new_password === user.password) {
       return fail(400, 'New password must be different from the current password')
     }
