@@ -2,7 +2,7 @@
 
 Vue 3 三階段教學介面：教師課程設定、學生蘇格拉底對話、教師審閱及發布全班觀點摘要。
 
-此為 **DO NOT MERGE** 原型儲存庫。首次下載、安裝、示範帳號與打包說明請先看 [根目錄 README](../README.md)。
+此為 **DO NOT MERGE** 原型儲存庫。首次下載、安裝、示範帳號與打包說明請先看 [根目錄 README](../README.md)；頁面目標與目前狀態見 [頁面功能規格書](../docs/SocratesBot_v0.2_頁面功能規格書_20261103.md)。
 
 ## Recommended IDE Setup
 

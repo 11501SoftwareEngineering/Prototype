@@ -4,6 +4,8 @@
 
 前端可獨立執行：示範模式使用瀏覽器裡的 MSW 假後端，不需要啟動 Python、Docker、資料庫，也不需要真正的 AI API key。
 
+![v0.2 老師頁面](docs/images/v0.2-teacher-courses.png)
+
 ## 下載與啟動原型
 
 先安裝 Node.js 24.12 以上及 pnpm。本次驗證環境為 Node.js 26.12.1、pnpm 12.15.0。未安裝 pnpm 時可執行：
@@ -88,7 +90,13 @@ NODE_OPTIONS=--no-experimental-webstorage pnpm exec vitest run
 
 PowerShell 可先設定 `$env:NODE_OPTIONS="--no-experimental-webstorage"`，再執行 `pnpm exec vitest run`。`pnpm build` 為正式模式，`pnpm build:demo` 才會啟用示範模式；要試用請使用後者。
 
-## 專案開發說明
+## 頁面規格與相關文件
 
+- [新版頁面功能規格書](docs/SocratesBot_v0.2_頁面功能規格書_20261103.md)：逐頁列出 17 個頁面的功能、權限、使用者故事、目前狀態及未完成目標。
+- [v0.2 前後端開發規格書](docs/SocratesBot_v0.2_前後端開發規格書.md)：保留的前後端開發參考；頁面目標與目前狀態以新版頁面功能規格書為準。
+- [前端三階段串接](docs/前端三階段串接.md)：既有串接參考。
 - [前端開發說明](frontend/README.md)：目錄、開發流程及前端規範。
 - [後端開發說明](backend/README.md)：正式後端環境、資料遷移及測試。
+- [團隊開發須知](docs/開發須知.md)：既有協作規範。
+
+目前頁面目標及操作行為以新版頁面功能規格書為準；原型可操作、僅示範及尚未完成的項目均分別標示。
